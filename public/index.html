@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Servidor de Archivos - Oficina</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+</head>
+<body>
+  <h1>Mi Servidor Privado P2P</h1>
+  <div id="status">Desconectado</div>
+  <button id="btnConnect">Conectar al Servidor</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">📁</span>
+      <h1>Servidor de Archivos</h1>
+    </div>
+    <button id="theme-toggle" class="theme-toggle" title="Cambiar tema">🌙</button>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="shared">Compartido</button>
+    <button class="tab-btn" data-tab="private">🔒 Privado</button>
+  </nav>
+
+  <main class="container">
+    <!-- SECCIÓN COMPARTIDA -->
+    <section id="tab-shared" class="tab-panel active">
+      <div class="dropzone" id="shared-dropzone">
+        <p>Arrastrá archivos acá o hacé clic para seleccionar</p>
+        <input type="file" id="shared-input" multiple hidden />
+      </div>
+      <div class="file-list" id="shared-list"></div>
+    </section>
+
+    <!-- SECCIÓN PRIVADA -->
+    <section id="tab-private" class="tab-panel">
+      <!-- Vista: pedir/crear contraseña -->
+      <div id="private-locked" class="locked-box">
+        <div id="private-setup" class="auth-card" hidden>
+          <h2>Configurá una contraseña</h2>
+          <p>Es la primera vez que entrás a la carpeta privada. Elegí una contraseña.</p>
+          <input type="password" id="setup-password" placeholder="Nueva contraseña" />
+          <button id="setup-btn" class="btn-primary">Crear y entrar</button>
+          <p class="error-msg" id="setup-error"></p>
+        </div>
+        <div id="private-login" class="auth-card" hidden>
+          <h2>Carpeta privada</h2>
+          <p>Ingresá la contraseña para acceder.</p>
+          <input type="password" id="login-password" placeholder="Contraseña" />
+          <button id="login-btn" class="btn-primary">Ingresar</button>
+          <p class="error-msg" id="login-error"></p>
+        </div>
+      </div>
+
+      <!-- Vista: contenido privado desbloqueado -->
+      <div id="private-unlocked" class="hidden">
+        <div class="private-toolbar">
+          <button id="logout-btn" class="btn-secondary">Cerrar sesión privada</button>
+          <button id="change-pass-btn" class="btn-secondary">Cambiar contraseña</button>
+        </div>
+        <div class="dropzone" id="private-dropzone">
+          <p>Arrastrá archivos acá o hacé clic para seleccionar</p>
+          <input type="file" id="private-input" multiple hidden />
+        </div>
+        <div class="file-list" id="private-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
